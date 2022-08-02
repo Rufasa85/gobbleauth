@@ -5,9 +5,14 @@ const apiRoutes = require("./api")
 router.get('/',(req,res)=>{
     res.render("home")
 })
+
+router.get("/login",(req,res)=>{
+    res.render("login")
+})
+
 router.get("/secretclub",(req,res)=>{
     if(!req.session.user){
-        return res.status(403).json({msg:"knucklhead, you have to login to enter the secret club!"})
+        res.redirect("/login")
     }
     res.render("club",req.session.user)
 })

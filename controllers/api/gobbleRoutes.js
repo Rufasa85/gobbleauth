@@ -13,8 +13,11 @@ router.get("/",(req,res)=>{
 })
 
 router.post("/",(req,res)=>{
+    if(!req.session.user){
+        return res.status(403).json({msg:"login first to gobble you fake turkey!"})
+    }
     Gobble.create({
-        UserId:req.body.UserId,
+        UserId:req.session.user.id,
         content:req.body.content,
     }).then(data=>{
         res.json(data)
