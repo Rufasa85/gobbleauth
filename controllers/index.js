@@ -30,6 +30,11 @@ router.get("/addcounter",(req,res)=>{
     res.send("req.session updated")
 })
 
+router.get("/logout",(req,res)=>{
+    req.session.destroy();
+    res.json({msg:"logged out!"})
+})
+
 router.use("/api",apiRoutes)
 
 module.exports = router;
